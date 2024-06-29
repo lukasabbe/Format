@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "formatfabric",
+  "version": "${version}",
+  "name": "FormatFabric",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/lukasabbe/Format"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/formatfabric/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.lukasabbe.formatfabric.FormatFabric"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
