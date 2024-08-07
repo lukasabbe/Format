@@ -12,8 +12,8 @@
   "icon": "assets/formatfabric/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "me.lukasabbe.formatfabric.FormatFabric"
+    "client": [
+      "me.lukasabbe.formatfabric.FormatFabricClient"
     ]
   },
   "depends": {
