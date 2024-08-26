@@ -1,0 +1,15 @@
+name: format
+version: '1.4.1'
+main: me.lukasabbe.format.Format
+api-version: '1.20'
+commands:
+  formattool:
+    description: Gets the format tool
+    permission: Format.tool
+    permission-message: You do not have permission!
+    usage: /<command>
+  format:
+    description: formats your tool
+    permission: Format.format
+    permission-message: You do not have permission!
+    usage: /<command> [args]
