@@ -36,16 +36,11 @@ public class ClickEventManger {
     }
 
     public ActionResult rightClickEvent(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
-        System.out.println("yes");
         if(hasClickedClient) return ActionResult.PASS;
-        System.out.println("yes2");
         if(!player.isCreative()) return ActionResult.PASS;
-        System.out.println("yes3");
         if(!player.getMainHandStack().isOf(Items.GOLDEN_AXE)) return ActionResult.PASS;
-        System.out.println("yes4");
         final BlockPos blockPos = hitResult.getBlockPos();
         if(world.getBlockState(blockPos).isOf(Blocks.AIR)) return ActionResult.PASS;
-        System.out.println("yes5");
         setHasClicked(true,player);
         hasAnyoneUsedFormat = true;
         setX(blockPos.getX(),player);
@@ -71,10 +66,16 @@ public class ClickEventManger {
     }
 
     public void tickEvent(MinecraftClient client) {
-        setHasClicked(false, client.player);
+        setHasClicked(true, client.player);
         hasAnyoneUsedFormat = false;
     }
 
+    public void tickEvent(MinecraftServer server) {
+        if(hasAnyoneUsedFormat){
+            hasClickedServer.forEach((player, value) -> hasClickedServer.put(player,false));
+            hasAnyoneUsedFormat = false;
+        }
+    }
 
     private void setHasClicked(boolean value,PlayerEntity player){
         if(isServerVersion)
