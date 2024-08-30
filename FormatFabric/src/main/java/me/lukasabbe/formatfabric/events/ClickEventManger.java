@@ -66,7 +66,7 @@ public class ClickEventManger {
     }
 
     public void tickEvent(MinecraftClient client) {
-        setHasClicked(true, client.player);
+        setHasClicked(false, client.player);
         hasAnyoneUsedFormat = false;
     }
 
