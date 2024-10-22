@@ -7,6 +7,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Items;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -35,7 +36,6 @@ public class ClickEventManger {
     }
 
     public ActionResult rightClickEvent(PlayerEntity player, World world, Hand hand, BlockHitResult hitResult) {
-        if(hasAnyoneUsedFormat) return ActionResult.FAIL;
         if(hasClickedClient) return ActionResult.PASS;
         if(!player.isCreative()) return ActionResult.PASS;
         if(!player.getMainHandStack().isOf(Items.GOLDEN_AXE)) return ActionResult.PASS;
@@ -46,12 +46,11 @@ public class ClickEventManger {
         setX(blockPos.getX(),player);
         setY(blockPos.getY(),player);
         setZ(blockPos.getZ(),player);
-        player.sendMessage(Text.of("This is the corner of were you want to create a area from"),false);
+        player.sendMessage(Text.of("This is the corner of were you want to create a area from"));
         return ActionResult.FAIL;
     }
 
     public ActionResult leftClickEvent(PlayerEntity player, World world, Hand hand, BlockPos pos, Direction direction) {
-        if(hasAnyoneUsedFormat) return ActionResult.FAIL;
         if(hasClickedClient) return ActionResult.PASS;
         if(!player.isCreative()) return ActionResult.PASS;
         if(!player.getMainHandStack().isOf(Items.GOLDEN_AXE)) return ActionResult.PASS;
@@ -61,16 +60,22 @@ public class ClickEventManger {
         setDx(pos.getX(),player);
         setDy(pos.getY(),player);
         setDz(pos.getZ(),player);
-        player.sendMessage(Text.of("This is the other corner."),false);
+        player.sendMessage(Text.of("This is the other corner."));
         player.stopUsingItem();
         return ActionResult.FAIL;
     }
 
     public void tickEvent(MinecraftClient client) {
-        setHasClicked(false, client.player);
+        setHasClicked(true, client.player);
         hasAnyoneUsedFormat = false;
     }
 
+    public void tickEvent(MinecraftServer server) {
+        if(hasAnyoneUsedFormat){
+            hasClickedServer.forEach((player, value) -> hasClickedServer.put(player,false));
+            hasAnyoneUsedFormat = false;
+        }
+    }
 
     private void setHasClicked(boolean value,PlayerEntity player){
         if(isServerVersion)

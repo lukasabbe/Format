@@ -54,7 +54,7 @@ public class FormatCalcCommand implements FormatCommand{
             MutableText message = Text
                     .literal(stringNbt)
                     .setStyle(Style.EMPTY.withClickEvent(clickEvent));
-            ctx.getSource().getPlayer().sendMessage(message,false);
+            ctx.getSource().getPlayer().sendMessage(message);
             return 1;
         }
         else{
@@ -68,7 +68,7 @@ public class FormatCalcCommand implements FormatCommand{
             MutableText message = Text
                     .literal(stringJson)
                     .setStyle(Style.EMPTY.withClickEvent(clickEvent));
-            ctx.getSource().getPlayer().sendMessage(message,false);
+            ctx.getSource().getPlayer().sendMessage(message);
             return 1;
         }
     }
