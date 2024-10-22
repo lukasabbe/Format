@@ -8,7 +8,7 @@
   "contact": {
     "repo": "https://github.com/lukasabbe/Format"
   },
-  "license": "All-Rights-Reserved",
+  "license": "MIT",
   "icon": "assets/formatfabric/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -19,6 +19,6 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": ">=${minecraft_version}"
+    "minecraft": ">=1.21.1"
   }
 }
